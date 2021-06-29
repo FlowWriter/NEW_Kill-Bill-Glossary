@@ -3,8 +3,6 @@
 :revlevel: 1.0
 :revdate: June 2021
 :revremarks: first draft
-:toc:
-:toclevels: 3
 :icons: font
 
 
