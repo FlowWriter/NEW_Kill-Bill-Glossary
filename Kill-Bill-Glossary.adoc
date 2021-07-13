@@ -36,12 +36,16 @@ Subscription Bundle (or just Bundle) – a collection of subscriptions that are 
 
 Catalog - A description of the set of Products, Plans, Price Lists and Rules that are being made available to customers. A catalog lets Kill Bill know what is being offered for sale and how much to charge for it.
 
+Child - An account that is associated with a parent account. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice.
+
 Customer – someone who buys your product
 
 == K
 Kill Bill Administrator (or Kill Bill Admin) - the person responsible for installing or configuring Kill Bill
 
 == P
+
+Parent - An account that contains one or more child accounts. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice.
 
 Payment Method - A record of the details required for Kill Bill to trigger a payment. Payment Methods represent things like credit cards, debit cards, or PayPal accounts. Each Account can have many Payment Methods and at most one Default Payment Method. Note that much of the representation of a Payment Method is plugin-specific and is actually stored by the Payment Plugin itself.
 
