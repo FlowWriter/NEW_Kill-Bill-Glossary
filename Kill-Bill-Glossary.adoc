@@ -20,46 +20,42 @@
 
 == A
 
-Account:: A record that contains details about the customer such as name, address, email address, phone number, etc. Also referred to as a "customer account" or just "customer."
+[[Account]]Account:: A record that contains details about the customer such as name, address, email address, phone number, etc. Also referred to as a "customer account."
 
 == B
 
-Billing Period:: The period for which the customer is billed (e.g MONTHLY, ANNUAL, …​)
+Billing Period:: The period for which the customer is billed. _Examples:_ `MONTHLY`, `ANNUAL`
 
-Bundle:: A collection of subscriptions associated with a single service instance. For example, a customer might have a base subscription for her phone plus an addon that provides cheap international dialing. Because both Subscriptions are associated with the same phone, they are collected into a single Bundle. An account may own several Bundles, each with one or more Subscriptions. Also known as a "subscription bundle."
-
-Subscription Bundle (or just Bundle) – a collection of subscriptions that are associated with a particular instance of a product. For example, you might have a voice plan, a data plan and a text plan for your mobile phone. In Kill Bill each plan would have its own subscription and we would represent the fact that they are associated with a single phone by grouping them in a Subscription Bundle. Of course an account might have multiple phones associated with it and a Kill Bill Account can have multiple Bundles associated with it.
+[[Bundle]]Bundle:: A collection of subscriptions associated with a single service instance. For example, a customer might have a base subscription for her phone, plus an add-on subscription for international dialing. Because both subscriptions are associated with the same phone, they are collected into a single bundle. An account may have several bundles, each with one or more subscriptions. Also known as a "subscription bundle."
 
 == C
 
-Catalog:: A description of the set of Products, Plans, Price Lists and Rules that are being made available to customers. A catalog lets Kill Bill know what is being offered for sale and how much to charge for it.
+Catalog:: A description of the set of products, plans, price lists, and rules that are available to customers. A catalog lets Kill Bill know what is being offered for sale and how much to charge for it.
 
-Child:: An account that is associated with a parent account. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice.
+[[Child]]Child:: An account that is associated with a parent account. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice. See also <<Parent>>.
 
-Customer:: See _customer account_.
+Customer:: The person who purchases a product or service from your organization. See also <<Account>>.
 
 == D
 
 == E
 
-External Key:: An alternative unique ID for an object, which you can use to map the object with an external resource. For example, the external key defined for a specific customer account is the same one used for your CRM system.
+External Key:: An alternative unique ID for an object, which you can use to map the object with an external resource. For example, you could define an external key for a specific customer account, which is the same as the identifier  used in your CRM system.
 
 _Example:_
 
 [cols="1"]
 |===
 
-| *CRM*:
-
-*Name:* Shirley Skinner
+| *CRM Name:* Shirley Skinner
 
 *CRM ID:* #4766gt53321#
 
 | *KILL BILL*:
 
-*Name:* Shirley Skinner
+*Kill Bill Name:* Shirley Skinner
 
-*External key:* #4766gt53321#
+*Kill Bill External Key:* #4766gt53321#
 
 *Kill Bill ID:* 6d468048-a1dc-45ea-87b5-72cf9ec14771
 
@@ -77,7 +73,7 @@ _Example:_
 
 == K
 
-Kaui:: An acronym for Kill (Bill) Admin User Interface, this software application lets back office staff (in Finance, Marketing, Development, etc.) perform tasks such as creating customer accounts, subscriptions, and so forth.
+[[Kaui]]Kaui:: An acronym for Kill (Bill) Admin User Interface, this browser-based application lets back office staff (in Finance, Marketing, Development, etc.) perform Kill Bill-related tasks, such as creating customer accounts, subscriptions, adding plugins, and so forth.
 
 Kill Bill Administrator (or Kill Bill Admin):: The person responsible for installing or configuring Kill Bill.
 
@@ -91,47 +87,44 @@ Kill Bill Administrator (or Kill Bill Admin):: The person responsible for instal
 
 == P
 
-Parent:: An account that contains one or more child accounts. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice.
+[[Parent]]Parent:: An account that contains one or more child accounts. Setting up a parent-child associations lets you define which entity is responsible for paying the invoice. See also <<Child>>.
 
-Payment Method:: A record of the details required for Kill Bill to trigger a payment. Payment methods represent information in the form of credit cards, debit cards, PayPal accounts, etc. Each account can have many payment methods and one default payment method. Note that much of the representation of a payment method is plugin-specific and is actually stored by the payment plugin itself.
+Payment Method:: A record of payment details, such as for credit cards, debit cards, PayPal accounts, etc. Each account can have many payment methods and one default payment method. Note that much of the representation of a payment method is plugin-specific and is actually stored by the payment plugin itself.
 
-Plan Phases (or just Phases):: Time periods within a subscription during which certain rules apply. Kill Bill plans can have multiple phases and each phase can have a different price and payment term. In this way, we can have plans with built in trials or discount phases. Kill Bill automatically handles the transitions between phases. In our example above the plans have two phases: they start with a 30 day trial which is free, and then move to a recurring phase at $100 per month.
+Phase:: The time periods within a plan. Kill Bill phases can be any of the following types: `TRIAL`, `DISCOUNT`, `FIXEDTERM`, or `EVERGREEN`. Note that a plan has at least one phase (i.e., a plan cannot be "empty" of phases.) A phase is also referred to as a "plan phase." See <<Plan>> below.
 
-Plans:: Specifications for the terms of the Subscription contract. In particular, plans define how much a customer pays for a product, and how often they pay it. For example, we could offer the Standard Spy Car product at $100 per month.
+[[Plan]]Plan:: Details for the terms of the <<Subscription,subscription>> contract. In particular, plans define how much a customer pays for a product and how often they pay it (_Example:_ A Standard product at $100 per month). A plan consists of at least one phase and can have multiple phases (_Example:_ A discount phase followed by a regular price phase).
 
-Plan:: A Catalog object that defines how a Product is to be paid for. Plans can have multiple phases (e.g. trial, discount, evergreen). The phase specifies the frequency of payment and the prices in multiple currencies. Each phase can have fixed and recurring prices associated with it. Each Product can have multiple Plans specifying different ways that the Product can be purchased (e.g. a monthly Plan and an annual Plan).
+Price List:: One or more plans that have discount/special pricing. Price lists are defined in the <<Catalog,catalog>>.
+Along with price lists, you define <<Rules,catalog rules>> that specify which price list to use if a customer changes plans.
 
-Price List:: A collection of plans. Price Lists are normally used to group discount plans that are associated with a particular customer group. For example, MI6 might have special rental terms for their Spy Cars with the CIA. In this case they would create a CIA Price List that grouped plans with those special terms together. When CIA agents would come to the rental site, they would see plans from that price list. More importantly if they change plans, for example if they upgrade from Sports to Super to meet the needs of a particularly difficult mission, they will upgrade to the Sports plan within the CIA Price List.
-
-Price list:: A collection of Plans that might be associated with a particular program (e.g. an affiliate program or a discount program). A Plan can be in many Price Lists. There must be a default Price List that is used when no Price List is specified. When a Subscription changes Plans, Catalog Rules can be used to determine which Price List the new Plan should use.
-
-Products:: The things that the customer actually buys (or rents). In the example depicted at the start of the chapter, the product available for rent is a Spy Car, which is available in three different versions: Standard, Sports and Super.
-
-Product:: A product or service that the customer buys.
+[[Product]]Product:: A product or service that the customer can purchase (or rent/lease). A product can be associated with multiple <<Plans,plans>>, each plan specifying different ways the product can be purchased (e.g., a monthly plan and an annual plan).
 
 == Q
 
 == R
 
-Rules:: The rules that determine how Kill Bill should behave when a plan is created, cancelled or changed.
+[[Rules]]Rules:: The rules that determine how Kill Bill should behave when a plan is created, cancelled or changed. Also known as "catalog rules."
 
 == S
 
-Subscription:: A contract between you and a customer to purchase a particular product with particular terms. In the system it associates a Plan (see below) with an Account and a start date.
+[[Subscription]]Subscription:: A contract between your organization and a customer to purchase a particular product/service with particular terms. Kill Bill associates a subscription with a <<Plan,plan>>, an <<Account,account>>, and a start date.
 
-Subscription - A contract that associates an account with a Plan and a specific start date. The Subscription will trigger automated payments based on the terms of the Plan.
-
-Subscription bundle - See <Bundle>.
+Subscription bundle:: See <<Bundle>>
 
 == T
 
-Tag:: A property that can be added to Accounts, Bundles or Subscriptions. There are two kinds of Tags: System Tags and User Tags. System Tags can impact the behaviour of the system. Examples include AUTO_PAY_OFF or AUTO_BILLING_OFF. User Tags are informational only, and can be created through the admin UI. User Tags are used to identify collections of Users, Subscriptions or Bundles so that they can easily be found or reported on later.
+Tag:: A property that can be added to objects (such as accounts, bundles or subscriptions). There are two kinds of Tags: system tags and user tags.
 
-Tenant::
+** System tags can impact the behavior of the system. Examples include `AUTO_PAY_OFF` or `AUTO_BILLING_OFF`.
+
+** User Tags are informational only, and can be created through <<Kaui>>, the Kill Bill admin UI. User tags can be used to identify collections of accounts, subscriptions, or bundles so that they can easily be found or reported on later.
+
+Tenant:: The division or organization that is using Kill Bill as a group of users. Note that an organization can have more than one tenant, as Kill Bill supports multitenancy.
 
 == U
 
-User:: Refers to a person who logs on to Kaui.
+User:: A person who logs on to Kaui.
 
 == V
 
